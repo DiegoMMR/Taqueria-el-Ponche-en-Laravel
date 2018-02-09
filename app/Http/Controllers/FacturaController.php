@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-use App\Menu;
+use App\Factura;
 
-class MenuController extends Controller
+class FacturaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::latest()->paginate(5);
-        return view('menus.index', compact('menus'))->with('i',(request()->input('page',1) -1) *5);
+        $facturas = Factura::latest()->paginate(5);
+        return view('facturas.index', compact('facturas'))->with('i',(request()->input('page',1) -1) *5);
     }
 
     /**
@@ -26,7 +27,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('menus.create');
+        return view('facturas.create');
     }
 
     /**
@@ -38,12 +39,10 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'plato' => 'required',
-            'descripcion' => 'required',
-            'precio' => 'required',
+            'idCliente' => 'required',            
         ]);
-        Menu::create($request->all());
-        return redirect()->route('menus.index')->with('success','Plato agregado exitosamente.');
+        Factura::create($request->all());
+        return redirect()->route('facturas.index')->with('success','Factura generada exitosamente.');
     }
 
     /**
@@ -54,8 +53,9 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        $menu = Menu::find($id);
-        return view('menus.show', compact('menu'));
+        $factura =  DB::select('CALL encabezado(?)', array($id));
+    
+        return view('facturas.show', compact('factura'));
     }
 
     /**
@@ -66,8 +66,8 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        $menu = Menu::find($id);
-        return view('menus.edit', compact('menu'));
+        $factura = Factura::find($id);
+        return view('facturas.edit', compact('factura'));
     }
 
     /**
@@ -80,12 +80,10 @@ class MenuController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'plato' => 'required',
-            'descripcion' => 'required',
-            'precio' => 'required',
+            'idCliente' => 'required',  
       ]);
-      Menu::find($id)->update($request->all());
-      return redirect()->route('menus.index')->with('success','Plato actualizado exitosamente');
+      Factura::find($id)->update($request->all());
+      return redirect()->route('facturas.index')->with('success','Factura actualizada exitosamente');
     }
 
     /**
@@ -96,7 +94,7 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-         Menu::find($id)->delete();
-        return redirect()->route('menus.index')->with('success', 'Plato eliminado exitosamente');
+        Factura::find($id)->delete();
+        return redirect()->route('facturas.index')->with('success', 'Factura eliminado exitosamente');
     }
 }

@@ -18,3 +18,9 @@ Route::get('/', function () {
 Route::resource('posts','PostController');
 
 Route::resource('menus','MenuController');
+
+Route::resource('clientes','ClienteController');
+
+Route::resource('facturas','FacturaController');
+
+Route::resource('ordenes','OrdenController');

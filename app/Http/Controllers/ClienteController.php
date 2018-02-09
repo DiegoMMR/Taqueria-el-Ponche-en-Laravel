@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Menu;
+use App\Cliente;
 
-class MenuController extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus = Menu::latest()->paginate(5);
-        return view('menus.index', compact('menus'))->with('i',(request()->input('page',1) -1) *5);
+        $clientes = Cliente::latest()->paginate(5);
+        return view('clientes.index', compact('clientes'))->with('i',(request()->input('page',1) -1) *5);
     }
 
     /**
@@ -26,7 +26,7 @@ class MenuController extends Controller
      */
     public function create()
     {
-        return view('menus.create');
+        return view('clientes.create');
     }
 
     /**
@@ -38,12 +38,14 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'plato' => 'required',
-            'descripcion' => 'required',
-            'precio' => 'required',
+            'nit' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
         ]);
-        Menu::create($request->all());
-        return redirect()->route('menus.index')->with('success','Plato agregado exitosamente.');
+        Cliente::create($request->all());
+        return redirect()->route('clientes.index')->with('success','Cliente agregado exitosamente.');
     }
 
     /**
@@ -54,8 +56,8 @@ class MenuController extends Controller
      */
     public function show($id)
     {
-        $menu = Menu::find($id);
-        return view('menus.show', compact('menu'));
+        $cliente = Cliente::find($id);
+        return view('clientes.show', compact('cliente'));
     }
 
     /**
@@ -66,8 +68,8 @@ class MenuController extends Controller
      */
     public function edit($id)
     {
-        $menu = Menu::find($id);
-        return view('menus.edit', compact('menu'));
+        $cliente = Cliente::find($id);
+        return view('clientes.edit', compact('cliente'));
     }
 
     /**
@@ -79,13 +81,15 @@ class MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        request()->validate([
-            'plato' => 'required',
-            'descripcion' => 'required',
-            'precio' => 'required',
+         request()->validate([
+            'nit' => 'required',
+            'nombre' => 'required',
+            'apellido' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
       ]);
-      Menu::find($id)->update($request->all());
-      return redirect()->route('menus.index')->with('success','Plato actualizado exitosamente');
+      Cliente::find($id)->update($request->all());
+      return redirect()->route('clientes.index')->with('success','Cliente actualizado exitosamente');
     }
 
     /**
@@ -96,7 +100,7 @@ class MenuController extends Controller
      */
     public function destroy($id)
     {
-         Menu::find($id)->delete();
-        return redirect()->route('menus.index')->with('success', 'Plato eliminado exitosamente');
+         Cliente::find($id)->delete();
+        return redirect()->route('clientes.index')->with('success', 'Cliente eliminado exitosamente');
     }
 }

@@ -21,6 +21,7 @@
 
   <table class="table table-bordered">
     <tr>
+      <th>No.</th>
       <th>Codigo</th>
       <th>Plato</th>
       <th>Descripcion</th>
@@ -30,6 +31,7 @@
 
     @foreach ($menus as $menu)
       <tr>
+         <td>{{ ++$i }}</td>
         <td>{{ $menu->id }}</td>
         <td>{{ $menu->plato }}</td>
         <td>{{ $menu->descripcion }}</td>

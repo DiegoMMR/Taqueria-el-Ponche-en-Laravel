@@ -77,7 +77,8 @@
                     <a href="{{  route('menus.index') }} ">Menu</a>
                     <a href="{{  route('clientes.index') }} ">Clientes</a>
                     <a href="{{  route('ordenes.index') }} ">Ordenes</a>
-                    <a href="{{  route('facturas.index') }} ">Factura</a>
+                    <a href="{{  route('facturas.index') }} ">Facturas</a>
+                    <a href="{{  route('pagos.index') }} ">Facturas Pagadas</a>
                 </div>
             </div>
         </div>

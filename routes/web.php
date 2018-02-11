@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,3 +26,5 @@ Route::resource('clientes','ClienteController');
 Route::resource('facturas','FacturaController');
 
 Route::resource('ordenes','OrdenController');
+
+Route::resource('pagos','PagosController');

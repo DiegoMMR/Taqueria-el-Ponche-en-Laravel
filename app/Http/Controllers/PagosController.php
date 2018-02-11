@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-use App\Factura;
 
-class FacturaController extends Controller
+class PagosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +15,8 @@ class FacturaController extends Controller
      */
     public function index()
     {
-        //$facturas = Factura::latest()->paginate(5);
-        $facturas =  DB::select('CALL verFacturas()');
-        return view('facturas.index', compact('facturas'))->with('i',(request()->input('page',1) -1) *7);
+        $facturas =  DB::select('CALL verFacturasPagadas()');
+        return view('pagos.index', compact('facturas'))->with('i',(request()->input('page',1) -1) *7);
     }
 
     /**
@@ -28,24 +26,19 @@ class FacturaController extends Controller
      */
     public function create()
     {
-        return view('facturas.create');
+       
     }
 
    
-
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        request()->validate([
-            'idCliente' => 'required',            
-        ]);
-        Factura::create($request->all());
-        return redirect()->route('facturas.index')->with('success','Factura generada exitosamente.');
+       
     }
 
     /**
@@ -56,10 +49,10 @@ class FacturaController extends Controller
      */
     public function show($id)
     {
-        $factura =  DB::select('CALL encabezado(?)', array($id));  
+         $factura =  DB::select('CALL encabezado(?)', array($id));  
         $descripcion =  DB::select('CALL descripcionFactura(?)', array($id));
         $total =  DB::select('CALL total(?)', array($id));
-        return view('facturas.show', compact('factura','descripcion','total'));
+        return view('pagos.show', compact('factura','descripcion','total'));
     }
 
     /**
@@ -70,8 +63,8 @@ class FacturaController extends Controller
      */
     public function edit($id)
     {
-        $factura = Factura::find($id);
-        return view('facturas.edit', compact('factura'));
+        $factura =  DB::select('CALL pagarFactura(?)', array($id));
+        return redirect()->route('facturas.index')->with('success','Factura pagada corectamente.');
     }
 
     /**
@@ -81,13 +74,9 @@ class FacturaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
-        request()->validate([
-            'idCliente' => 'required',  
-      ]);
-      Factura::find($id)->update($request->all());
-      return redirect()->route('facturas.index')->with('success','Factura actualizada exitosamente');
+        
     }
 
     /**
@@ -96,9 +85,8 @@ class FacturaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy()
     {
-        Factura::find($id)->delete();
-        return redirect()->route('facturas.index')->with('success', 'Factura eliminado exitosamente');
+        
     }
 }

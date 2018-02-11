@@ -17,8 +17,8 @@ class OrdenController extends Controller
      */
     public function index()
     {
-        $ordenes = Orden::latest()->paginate(5);
-        return view('ordenes.index', compact('ordenes'))->with('i',(request()->input('page',1) -1) *5);
+        $ordenes =  DB::select('CALL verOrdenes()');
+        return view('ordenes.index', compact('ordenes'))->with('i');
     }
 
     /**
@@ -62,7 +62,7 @@ class OrdenController extends Controller
     public function show($id)
     {
         $orden =  DB::select('CALL verOrden(?)', array($id));
-    
+
         return view('ordenes.show', compact('orden'));
     }
 

@@ -23,9 +23,10 @@
     <tr>
       <th>No.</th>
       <th>Cantidad</th>
-      <th>Plato No.</th>
-      <th>Factura No.</th>
+      <th>Plato</th>
+      <th>Precio</th>
       <th>Subtotal</th>
+      <th>Factura No.</th>
       <th width="300px">Acciones</th>
     </tr>
 
@@ -33,9 +34,10 @@
       <tr>        
         <td>{{ ++$i }}</td>
         <td>{{ $orden->cantidad }}</td>
-        <td>{{ $orden->idPlato }}</td>
-        <td>{{ $orden->idFactura }}</td>
+        <td>{{ $orden->plato }}</td>
+        <td>Q. {{ $orden->precio }}</td>
         <td>Q. {{ $orden->subtotal }}</td>
+        <td>{{ $orden->idFactura }}</td>
         <td>
           <a class="btn btn-xs btn-info" href="{{ route('ordenes.show', $orden->id) }}">Mostrar</a>
           <a class="btn btn-xs btn-primary" href="{{ route('ordenes.edit', $orden->id) }}">Editar</a>
@@ -47,7 +49,6 @@
       </tr>
     @endforeach
   </table>
-  {!! $ordenes->links() !!}
   <div class="pull-lrft">
         <a class="btn btn-xs btn-info" href="/" >Regresar al menu principal</a>
   </div>

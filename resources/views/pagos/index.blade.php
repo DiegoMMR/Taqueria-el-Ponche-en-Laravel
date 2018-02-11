@@ -3,13 +3,12 @@
 @section('content')
   <div class="row">
     <div class="col-lg-12">
-      <h3>Facturas</h3>
+      <h3>Facturas Pagadas</h3>
     </div>
   </div>
   <div class="row">
     <div class="col-sm-12">
       <div class="pull-right">
-        <a class="btn btn-xs btn-success" href="{{ route('facturas.create') }}">Generar nueva Factura</a>
       </div>
     </div>
   </div>
@@ -37,12 +36,7 @@
         <td>{{ $factura->nit }}</td>
         <td>{{ $factura->created_at }}</td>
         <td>
-          <a class="btn btn-xs btn-info" href="{{ route('facturas.show', $factura->NoFactura) }}">Mostrar</a>
-          <a class="btn btn-xs btn-primary" href="{{ route('facturas.edit', $factura->NoFactura) }}">Editar</a>
-
-          {!! Form::open(['method' => 'DELETE', 'route'=>['facturas.destroy', $factura->NoFactura], 'style'=> 'display:inline']) !!}
-          {!! Form::submit('Eliminar',['class'=> 'btn btn-xs btn-danger']) !!}
-          {!! Form::close() !!}
+          <a class="btn btn-xs btn-info" href="{{ route('pagos.show', $factura->NoFactura) }}">Mostrar</a>
         </td>
       </tr>
     @endforeach

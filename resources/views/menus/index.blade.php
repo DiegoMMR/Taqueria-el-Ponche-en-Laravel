@@ -1,12 +1,22 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
-  <div class="row">
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                  <div class="row">
     <div class="col-lg-12">
-      <h3>Menu</h3>
+      <div class="pull-left">
+        <h3>Menu</h3>
+      </div>
     </div>
   </div>
-  <div class="row">
+                     <div class="row">
     <div class="col-sm-12">
       <div class="pull-right">
         <a class="btn btn-xs btn-success" href="{{ route('menus.create') }}">Agregar plato al Menu</a>
@@ -51,4 +61,12 @@
   <div class="pull-lrft">
         <a class="btn btn-xs btn-info" href="/" >Regresar al menu principal</a>
   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ 
+ 
 @endsection

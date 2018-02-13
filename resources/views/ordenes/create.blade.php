@@ -1,7 +1,14 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
-  <div class="row">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    
+              <div class="row">
     <div class="col-lg-12">
       <div class="pull-left">
         <h3>Hacer una nueva orden</h3>
@@ -23,5 +30,13 @@
   {!! Form::open(['route' => 'ordenes.store', 'method' => 'POST']) !!}
     @include('ordenes.form')
   {!! Form::close() !!}
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
 
 @endsection

@@ -12,9 +12,12 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => ['web']], function () {
+   
+    Route::get('/', function () {
+    return view('home');
 });
 
 Route::resource('posts','PostController');
@@ -28,3 +31,7 @@ Route::resource('facturas','FacturaController');
 Route::resource('ordenes','OrdenController');
 
 Route::resource('pagos','PagosController');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+});

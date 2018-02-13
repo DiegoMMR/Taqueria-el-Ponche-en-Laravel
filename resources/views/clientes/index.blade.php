@@ -1,7 +1,15 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
-  <div class="row">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 col-md-offset-0">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    
+
+                   <div class="row">
     <div class="col-lg-12">
       <h3>Clientes</h3>
     </div>
@@ -50,5 +58,13 @@
   {!! $clientes->links() !!}
   <div class="pull-lrft">
         <a class="btn btn-xs btn-info" href="/" >Regresar al menu principal</a>
-  </div>
+  </div> 
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
 @endsection

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Orden;
-
+use App\Menu;
 
 class OrdenController extends Controller
 {
@@ -28,7 +28,11 @@ class OrdenController extends Controller
      */
     public function create()
     {
-        return view('ordenes.create');
+        $menu = Menu::all();
+        
+        $menu = $menu->pluck('plato', 'id');
+
+        return view('ordenes.create', compact('menu'));
     }
 
     /**
@@ -62,8 +66,11 @@ class OrdenController extends Controller
     public function show($id)
     {
         $orden =  DB::select('CALL verOrden(?)', array($id));
+        $menu = Menu::all();
+        
+        $menu = $menu->pluck('plato', 'id');
 
-        return view('ordenes.show', compact('orden'));
+        return view('ordenes.show', compact('orden', 'menu'));
     }
 
     /**
@@ -75,7 +82,12 @@ class OrdenController extends Controller
     public function edit($id)
     {
         $orden = Orden::find($id);
-        return view('ordenes.edit', compact('orden'));
+        
+        $menu = Menu::all();
+        
+        $menu = $menu->pluck('plato', 'id');
+
+        return view('ordenes.edit', compact('orden', 'menu'));
     }
 
     /**

@@ -6,9 +6,11 @@
     </div>
   </div>
   <div class="col-xs-12">
-    <div class="form-group">
-      <strong>Cod. del plato : </strong>
-      {!! Form::text('idPlato', null, ['placeholder'=>'Codigo del plato','class'=>'form-control']) !!}
+    <div class="form-group {{ $errors->has('idPlato') ? 'has-error' : ''}} ">
+          {!! Form::label('idPlato', 'Plato', ['class' => ' control-label']) !!}
+          {!! Form::select('idPlato', $menu, null, [ 'class' => 'form-control selectpicker', 'id'=>'id', 'required'=>'required']) !!}
+          {!! $errors->first('idPlato', '<p class="help-block">:message</p>') !!}
+      
     </div>
   </div>
   <div class="col-xs-12">

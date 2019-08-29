@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Factura;
+use App\Cliente;
 
 class FacturaController extends Controller
 {
@@ -28,7 +29,15 @@ class FacturaController extends Controller
      */
     public function create()
     {
-        return view('facturas.create');
+        $clientesData = Cliente::all();
+
+        $clientes = [];
+
+        foreach ($clientesData as $key => $cliente) {
+            $clientes[$cliente->id] = $cliente->nombre . ' ' . $cliente->apellido . ' Tel: ' . $cliente->telefono;
+        }
+
+        return view('facturas.create', compact('clientes'));
     }
 
    
@@ -70,8 +79,16 @@ class FacturaController extends Controller
      */
     public function edit($id)
     {
+        $clientesData = Cliente::all();
+
+        $clientes = [];
+
+        foreach ($clientesData as $key => $cliente) {
+            $clientes[$cliente->id] = $cliente->nombre . ' ' . $cliente->apellido . ' Tel: ' . $cliente->telefono;
+        }
+
         $factura = Factura::find($id);
-        return view('facturas.edit', compact('factura'));
+        return view('facturas.edit', compact('factura', 'clientes'));
     }
 
     /**

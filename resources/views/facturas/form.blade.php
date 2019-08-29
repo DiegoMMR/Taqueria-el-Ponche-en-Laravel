@@ -1,9 +1,12 @@
 <div class="row">
   
   <div class="col-xs-12">
-    <div class="form-group">
-      <strong>Codigo Cliente : </strong>
-      {!! Form::text('idCliente', null, ['placeholder'=>'5','class'=>'form-control']) !!}
+
+    <div class="form-group {{ $errors->has('idCliente') ? 'has-error' : ''}} ">
+          {!! Form::label('idCliente', 'Cliente', ['class' => ' control-label']) !!}
+          {!! Form::select('idCliente', $clientes, null, [ 'class' => 'form-control selectpicker', 'id'=>'id', 'required'=>'required']) !!}
+          {!! $errors->first('idCliente', '<p class="help-block">:message</p>') !!}
+      
     </div>
   </div>
   <div class="col-xs-12">

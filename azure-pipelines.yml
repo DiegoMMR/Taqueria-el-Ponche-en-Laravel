@@ -45,8 +45,8 @@ stages:
     - script: composer install --no-interaction --prefer-dist
       workingDirectory: $(rootFolder)
       displayName: 'Composer install'
-    - script: php artisan dusk
-      displayName: 'Run tests with Laravel Dusk'
+    - script: phpunit
+      displayName: 'Run tests with phpunit'
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'

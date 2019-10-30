@@ -45,8 +45,6 @@ stages:
     - script: composer install --no-interaction --prefer-dist
       workingDirectory: $(rootFolder)
       displayName: 'Composer install'
-    - script: phpunit
-      displayName: 'Run tests with phpunit'
 
     - task: ArchiveFiles@2
       displayName: 'Archive files'

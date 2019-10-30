@@ -59,6 +59,20 @@ stages:
       displayName: 'Upload package'
       artifact: drop
 
+
+- stage: Test
+  displayName: Test App
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+    - job: Dusk
+      pool:
+        vmImage: $(vmImageName)
+      steps:
+        - script: php artisan dusk
+          workingDirectory: $(rootFolder)
+          displayName: 'Run test with Laravel Dusk'
+
 - stage: Deploy
   displayName: 'Deploy Web App'
   dependsOn: Build

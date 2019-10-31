@@ -59,9 +59,30 @@ stages:
       displayName: 'Upload package'
       artifact: drop
 
+- stage: Testing
+  displayName: 'Testing'
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+  - job: TestJob
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+      - script: vendor/bin/phpunit --log-junit tests/Results/TEST-phpunit-junit.xml
+      - script: php artisan dusk --log-junit tests/Results/TEST-dusk-junit.xml
+      - task: PublishTestResults@2
+        inputs:
+          testRunner: 'JUnit'
+          testResultsFiles: '**/TEST-*.xml'
+          searchFolder: '$(System.DefaultWorkingDirectory)/tests/Results'
+          mergeTestResults: false
+          testRunTitle: 'Laravel Dusk Test'
+
+    
+
 - stage: Deploy
   displayName: 'Deploy Web App'
-  dependsOn: Build
+  dependsOn: Testing
   condition: succeeded()
   jobs:
   - deployment: DeploymentJob

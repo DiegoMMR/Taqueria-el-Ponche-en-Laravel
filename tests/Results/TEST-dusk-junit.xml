@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="Browser Test Suite" tests="5" assertions="5" errors="0" failures="0" skipped="0" time="42.640552">
+    <testsuite name="Tests\Browser\AgregarMenuTest" file="C:\xampp\htdocs\el-ponche\tests\Browser\AgregarMenuTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="9.407706">
+      <testcase name="testExample" class="Tests\Browser\AgregarMenuTest" classname="Tests.Browser.AgregarMenuTest" file="C:\xampp\htdocs\el-ponche\tests\Browser\AgregarMenuTest.php" line="18" assertions="1" time="9.407706"/>
+    </testsuite>
+    <testsuite name="Tests\Browser\LoginTest" file="C:\xampp\htdocs\el-ponche\tests\Browser\LoginTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="7.458205">
+      <testcase name="testExample" class="Tests\Browser\LoginTest" classname="Tests.Browser.LoginTest" file="C:\xampp\htdocs\el-ponche\tests\Browser\LoginTest.php" line="16" assertions="1" time="7.458205"/>
+    </testsuite>
+    <testsuite name="Tests\Browser\ModErrClienteTest" file="C:\xampp\htdocs\el-ponche\tests\Browser\ModErrClienteTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="7.301858">
+      <testcase name="testExample" class="Tests\Browser\ModErrClienteTest" classname="Tests.Browser.ModErrClienteTest" file="C:\xampp\htdocs\el-ponche\tests\Browser\ModErrClienteTest.php" line="17" assertions="1" time="7.301858"/>
+    </testsuite>
+    <testsuite name="Tests\Browser\RegisterTest" file="C:\xampp\htdocs\el-ponche\tests\Browser\RegisterTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="7.273792">
+      <testcase name="testExample" class="Tests\Browser\RegisterTest" classname="Tests.Browser.RegisterTest" file="C:\xampp\htdocs\el-ponche\tests\Browser\RegisterTest.php" line="17" assertions="1" time="7.273792"/>
+    </testsuite>
+    <testsuite name="Tests\Browser\RegistroClienteTest" file="C:\xampp\htdocs\el-ponche\tests\Browser\RegistroClienteTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="11.198991">
+      <testcase name="testExample" class="Tests\Browser\RegistroClienteTest" classname="Tests.Browser.RegistroClienteTest" file="C:\xampp\htdocs\el-ponche\tests\Browser\RegistroClienteTest.php" line="18" assertions="1" time="11.198991"/>
+    </testsuite>
+  </testsuite>
+</testsuites>

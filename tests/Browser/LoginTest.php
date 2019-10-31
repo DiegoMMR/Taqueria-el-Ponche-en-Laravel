@@ -30,7 +30,7 @@ class LoginTest extends DuskTestCase
                     ->type('email', 'diego.mz.rv@gmail.com')
                     ->type('password', 'rpz1FnvYa0zax')
                     ->press('Login')
-                    ->assertPathIs('/el-ponche/public/home');
+                    ->assertPathIs('/home');
                     //->assertSee('Bienvenido');
         });
     }

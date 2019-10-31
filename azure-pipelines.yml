@@ -68,14 +68,14 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-      - script: vendor/bin/phpunit --log-junit tests/Results/TEST-phpunit-junit.xml
-      - script: php artisan dusk --log-junit tests/Results/TEST-dusk-junit.xml
+      - script: |
+          php artisan dusk --log-junit tests/Results/TEST-dusk-junit.xml
+        workingDirectory: $(rootFolder)
+        displayName: 'Run Dusk Command'
       - task: PublishTestResults@2
         inputs:
-          testRunner: 'JUnit'
+          testResultsFormat: 'JUnit'
           testResultsFiles: '**/TEST-*.xml'
-          searchFolder: '$(System.DefaultWorkingDirectory)/tests/Results'
-          mergeTestResults: false
           testRunTitle: 'Laravel Dusk Test'
 
     

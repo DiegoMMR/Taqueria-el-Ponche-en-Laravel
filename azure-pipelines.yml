@@ -47,6 +47,16 @@ stages:
       displayName: 'Composer install'
 
     - script: |
+        cp .env.example .env
+      workingDirectory: $(rootFolder)
+      displayName: 'Copy .env File'
+
+    - script: |
+        php artisan key:generate
+      workingDirectory: $(rootFolder)
+      displayName: 'Laravel key Generate'
+
+    - script: |
         php artisan dusk --log-junit tests/Results/TEST-dusk-junit.xml
       workingDirectory: $(rootFolder)
       displayName: 'Run Dusk Command'

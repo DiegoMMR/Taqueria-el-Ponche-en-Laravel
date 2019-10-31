@@ -35,6 +35,7 @@ class RegisterTest extends DuskTestCase
                     ->type('password_confirmation', 'rpz1FnvYa0zax')
                     ->press('Register')
                     ->assertPathIs('/home');  
+                    // el-ponche/public/home
                     
         });
     }

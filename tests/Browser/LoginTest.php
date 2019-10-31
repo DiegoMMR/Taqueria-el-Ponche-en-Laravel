@@ -27,11 +27,14 @@ class LoginTest extends DuskTestCase
 
             $browser->visit('/')
                     ->clickLink('Login')
-                    ->type('email', 'diego.mz.rv@gmail.com')
-                    ->type('password', 'rpz1FnvYa0zax')
+                    ->type('email', 'azure@test.com')
+                    ->type('password', 'azure123')
+                    //->type('email', 'diego.mz.rv@gmail.com')
+                    //->type('password', 'rpz1FnvYa0zax')
                     ->press('Login')
                     ->assertPathIs('/home');
-                    //->assertSee('Bienvenido');
+                    // el-ponche/public/home
+                    // ->assertSee('Bienvenido');
         });
     }
 }

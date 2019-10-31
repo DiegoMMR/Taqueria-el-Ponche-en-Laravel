@@ -46,6 +46,23 @@ stages:
       workingDirectory: $(rootFolder)
       displayName: 'Composer install'
 
+    - script: |
+        php artisan key:generate
+      workingDirectory: $(rootFolder)
+      displayName: 'Update Laravel Key'
+
+    - script: |
+        php artisan dusk --log-junit tests/Results/TEST-dusk-junit.xml
+      workingDirectory: $(rootFolder)
+      displayName: 'Run Dusk Command'
+    
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/TEST-*.xml'
+        searchFolder: '$(rootFolder)/tests/Results'
+        testRunTitle: 'Laravel Dusk Test'
+
     - task: ArchiveFiles@2
       displayName: 'Archive files'
       inputs:
@@ -78,23 +95,3 @@ stages:
               azureSubscription: $(azureSubscription)
               appName: $(webAppName)
               package: $(Pipeline.Workspace)/drop/$(Build.BuildId).zip
-
-- stage: Testing
-  displayName: 'Testing'
-  dependsOn: Deploy
-  condition: succeeded()
-  jobs:
-  - job: TestJob
-    pool:
-      vmImage: $(vmImageName)
-    steps:
-      - script: |
-          php artisan dusk --log-junit tests/Results/TEST-dusk-junit.xml
-        workingDirectory: $(rootFolder)
-        displayName: 'Run Dusk Command'
-      - task: PublishTestResults@2
-        inputs:
-          testResultsFormat: 'JUnit'
-          testResultsFiles: '**/TEST-*.xml'
-          searchFolder: '$(rootFolder)/tests/Results'
-          testRunTitle: 'Laravel Dusk Test'

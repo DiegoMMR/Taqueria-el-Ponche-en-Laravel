@@ -69,6 +69,7 @@ stages:
       vmImage: $(vmImageName)
     steps:
       - script: |
+          pwd
           php artisan dusk --log-junit tests/Results/TEST-dusk-junit.xml
         workingDirectory: $(rootFolder)
         displayName: 'Run Dusk Command'

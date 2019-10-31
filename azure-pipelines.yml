@@ -76,6 +76,7 @@ stages:
         inputs:
           testResultsFormat: 'JUnit'
           testResultsFiles: '**/TEST-*.xml'
+          searchFolder: '$(System.DefaultWorkingDirectory)/tests/Results'
           testRunTitle: 'Laravel Dusk Test'
 
     

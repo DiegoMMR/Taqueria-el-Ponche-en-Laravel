@@ -52,6 +52,11 @@ stages:
       displayName: 'Copy .env File'
 
     - script: |
+        cp chromedriver-linux vendor/laravel/dusk/bin/chromedriver-linux
+      workingDirectory: $(rootFolder)
+      displayName: 'update chrome driver'
+
+    - script: |
         php artisan key:generate
       workingDirectory: $(rootFolder)
       displayName: 'Laravel key Generate'

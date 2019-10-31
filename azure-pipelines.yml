@@ -47,11 +47,6 @@ stages:
       displayName: 'Composer install'
 
     - script: |
-        php artisan key:generate
-      workingDirectory: $(rootFolder)
-      displayName: 'Update Laravel Key'
-
-    - script: |
         php artisan dusk --log-junit tests/Results/TEST-dusk-junit.xml
       workingDirectory: $(rootFolder)
       displayName: 'Run Dusk Command'

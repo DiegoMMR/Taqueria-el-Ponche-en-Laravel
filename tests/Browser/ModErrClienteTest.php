@@ -24,7 +24,10 @@ class ModErrClienteTest extends DuskTestCase
              * Entonces: dejamos en blanco el campo de nombre y nit 
              * y muestra el mensaje de que no se pueden dejar campos en blanco.
              */
-            $browser->loginAs(User::find(1))
+            $browser->visit('/')
+                    ->clickLink('Login')
+                    ->type('email', 'azure@test.com')
+                    ->type('password', 'azure123')
                     ->visit('/home')
                     ->clickLink('Clientes')
                     ->clickLink('Editar')

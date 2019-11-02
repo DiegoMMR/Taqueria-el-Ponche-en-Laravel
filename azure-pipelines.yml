@@ -58,10 +58,9 @@ stages:
 
     - script: |
         php artisan cache:clear
-        php artisan route:cache
         php artisan config:clear
-        php artisan view:clear
         php artisan key:generate
+        composer dump-autoload
       workingDirectory: $(rootFolder)
       displayName: 'Laravel key Generate'
 

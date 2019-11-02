@@ -27,8 +27,7 @@ class RegisterTest extends DuskTestCase
              * Entonces: Crea el usuario e inicia sesión automáticamente  
              * */
             
-            $browser->visit('/')
-                    ->clickLink('Register')
+            $browser->visit('/register')
                     ->type('name', $faker->name)
                     ->type('email', $faker->email)
                     ->type('password', 'rpz1FnvYa0zax')

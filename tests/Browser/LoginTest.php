@@ -25,8 +25,7 @@ class LoginTest extends DuskTestCase
              * Entonces: ingresó al sistema
              */
 
-            $browser->visit('/')
-                    ->clickLink('Login')
+            $browser->visit('/login')
                     ->type('email', 'azure@test.com')
                     ->type('password', 'azure123')
                     //->type('email', 'diego.mz.rv@gmail.com')

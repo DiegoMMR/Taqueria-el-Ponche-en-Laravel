@@ -57,6 +57,10 @@ stages:
       displayName: 'update chrome driver'
 
     - script: |
+        php artisan cache:clear
+        php artisan route:cache
+        php artisan config:clear
+        php artisan view:clear
         php artisan key:generate
       workingDirectory: $(rootFolder)
       displayName: 'Laravel key Generate'
